@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Product Detail</title>
+</head>
+<body>
+<h1>Product Detail</h1>
+<form th:action="@{/admin/detail}" method="get" th:object="${product}">
+    <p><strong>ID:</strong> <span th:text="*{id}"></span></p>
+    <p><strong>Name:</strong> <span th:text="*{name}"></span></p>
+    <p><strong>Price:</strong> <span th:text="*{price}"></span></p>
+    <p><strong>Description:</strong> <span th:text="*{description}"></span></p>
+    <p><strong>Provide:</strong> <span th:text="*{provide}"></span></p>
+</form>
+<a th:href="@{/admin/list}">Back to list</a>
+</body>
+</html>

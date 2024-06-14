@@ -1,0 +1,42 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Manager Product</title>
+</head>
+<body>
+<h1>Welcome manager</h1>
+
+<p><a th:href="@{/admin/create}">Create new product</a></p>
+<form action="/admin/search" method="get">
+    <input type="text" name="name" placeholder="Search by name"/>
+    <button type="submit">Search</button>
+</form>
+<form th:action="@{/admin/list}" method="get">
+    <table border="1">
+        <tr>
+            <th>STT</th>
+            <th>Name Product</th>
+            <th>Price</th>
+            <th>Description</th>
+            <th>Action</th>
+        </tr>
+        <tr th:each="product , state : ${products}">
+            <td th:text="${state.count}"></td>
+            <td th:text="${product.name}"></td>
+            <td th:text="${product.price}"></td>
+            <td th:text="${product.description}"></td>
+            <td>
+                <p><a th:href="@{/admin/edit/{id}(id=${product.id})}">Edit</a></p>
+                <form th:action="@{/admin/delete/{id}(id=${product.id})}" method="post">
+                    <button type="submit">Delete</button>
+                </form>
+                <p><a th:href="@{/admin/detail/{id}(id=${product.id})}">Detail</a></p>
+            </td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
